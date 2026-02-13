@@ -23,7 +23,9 @@ class MyApp extends StatelessWidget {
       title: 'POS System',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const DashboardScreen(),
+      home: Supabase.instance.client.auth.currentSession != null
+          ? const DashboardScreen()
+          : const LoginScreen(),
     );
   }
 }
