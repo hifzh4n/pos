@@ -12,7 +12,7 @@ class StatisticScreen extends StatefulWidget {
 
 class _StatisticScreenState extends State<StatisticScreen> {
   final SupabaseClient _supabase = Supabase.instance.client;
-  String _filter = 'Today';
+  String _filter = 'Hari Ini';
   bool _isLoading = true;
 
   double _totalSales = 0.0;
@@ -31,9 +31,9 @@ class _StatisticScreenState extends State<StatisticScreen> {
       final now = DateTime.now();
       DateTime startDate;
 
-      if (_filter == 'Today') {
+      if (_filter == 'Hari Ini') {
         startDate = DateTime(now.year, now.month, now.day);
-      } else if (_filter == 'This Week') {
+      } else if (_filter == 'Minggu Ini') {
         startDate = now.subtract(const Duration(days: 7));
       } else {
         startDate = DateTime(now.year, now.month, 1);
@@ -61,7 +61,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
         });
       }
     } catch (e) {
-      debugPrint('Error fetching stats: $e');
+      debugPrint('Ralat mendapatkan statistik: $e');
       if (mounted) {
         setState(() => _isLoading = false);
       }
@@ -155,7 +155,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Statistics',
+                                  'Statistik',
                                   style: GoogleFonts.poppins(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,
@@ -163,7 +163,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                   ),
                                 ),
                                 Text(
-                                  'Overview for $_filter',
+                                  'Ringkasan untuk $_filter',
                                   style: GoogleFonts.poppins(
                                     fontSize: 14,
                                     color: Colors.grey[600],
@@ -185,7 +185,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton<String>(
                                   value: _filter,
-                                  items: ['Today', 'This Week', 'This Month']
+                                  items: ['Hari Ini', 'Minggu Ini', 'Bulan Ini']
                                       .map(
                                         (f) => DropdownMenuItem(
                                           value: f,
@@ -209,7 +209,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                         // Summary Cards
                         if (isSmallScreen) ...[
                           _buildSummaryCard(
-                            title: 'Total Sales',
+                            title: 'Jumlah Jualan',
                             value: 'RM${_totalSales.toStringAsFixed(2)}',
                             icon: Icons.attach_money,
                             color: Colors.green,
@@ -217,7 +217,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                           ),
                           const SizedBox(height: 16),
                           _buildSummaryCard(
-                            title: 'Orders',
+                            title: 'Pesanan',
                             value: _totalOrders.toString(),
                             icon: Icons.receipt_long,
                             color: Colors.orange,
@@ -228,7 +228,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                             children: [
                               Expanded(
                                 child: _buildSummaryCard(
-                                  title: 'Total Sales',
+                                  title: 'Jumlah Jualan',
                                   value: 'RM${_totalSales.toStringAsFixed(2)}',
                                   icon: Icons.attach_money,
                                   color: Colors.green,
@@ -237,7 +237,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                               const SizedBox(width: 16),
                               Expanded(
                                 child: _buildSummaryCard(
-                                  title: 'Orders',
+                                  title: 'Pesanan',
                                   value: _totalOrders.toString(),
                                   icon: Icons.receipt_long,
                                   color: Colors.orange,
@@ -266,7 +266,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Period Information',
+                                'Maklumat Tempoh',
                                 style: GoogleFonts.poppins(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -278,7 +278,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Filter:',
+                                    'Penapis:',
                                     style: GoogleFonts.poppins(
                                       color: Colors.grey[600],
                                     ),
@@ -297,7 +297,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    'Average per Order:',
+                                    'Purata setiap pesanan:',
                                     style: GoogleFonts.poppins(
                                       color: Colors.grey[600],
                                     ),

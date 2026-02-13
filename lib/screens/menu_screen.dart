@@ -63,7 +63,7 @@ class _MenuScreenState extends State<MenuScreen> {
         });
       }
     } catch (e) {
-      debugPrint('Error loading menu: $e');
+      debugPrint('Ralat memuatkan menu: $e');
       if (mounted) {
         setState(() => _isLoading = false);
       }
@@ -198,8 +198,8 @@ class _MenuScreenState extends State<MenuScreen> {
                         child: CheckboxListTile(
                           title: Text(
                             isAyamGunting
-                                ? 'Cheese (+RM${cheeseSurcharge.toStringAsFixed(2)})'
-                                : 'Cheese (FREE)',
+                                ? 'Keju (+RM${cheeseSurcharge.toStringAsFixed(2)})'
+                                : 'Keju (PERCUMA)',
                             style: GoogleFonts.poppins(fontSize: 14),
                           ),
                           value: cheese,
@@ -279,7 +279,7 @@ class _MenuScreenState extends State<MenuScreen> {
                       TextField(
                         controller: remarkController,
                         decoration: InputDecoration(
-                          hintText: 'Tambah catatan (optional)',
+                          hintText: 'Tambah catatan (pilihan)',
                           hintStyle: GoogleFonts.poppins(fontSize: 14),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8),

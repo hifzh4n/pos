@@ -46,7 +46,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         }
       }
     } catch (e) {
-      debugPrint('Error fetching last order number: $e');
+      debugPrint('Ralat mendapatkan nombor pesanan terakhir: $e');
     }
   }
 
@@ -101,7 +101,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       } catch (e) {
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Ralat menyimpan pesanan: $e')),
+            const SnackBar(
+              content: Text('Ralat menyimpan pesanan. Sila cuba lagi.'),
+            ),
           );
         }
       }
@@ -269,7 +271,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     final user = _supabase.auth.currentUser;
-    final displayName = user?.userMetadata?['display_name'] ?? 'User';
+    final displayName = user?.userMetadata?['display_name'] ?? 'Pengguna';
     final email = user?.email ?? '';
     final initial = displayName.isNotEmpty ? displayName[0].toUpperCase() : 'U';
 
@@ -287,7 +289,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 // Index 0: Home
                 Center(
                   child: Text(
-                    'Home Content',
+                    'Kandungan Utama',
                     style: GoogleFonts.poppins(fontSize: 20),
                   ),
                 ),
@@ -311,7 +313,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 // Index 4: Settings
                 Center(
                   child: Text(
-                    'Settings Content',
+                    'Kandungan Tetapan',
                     style: GoogleFonts.poppins(fontSize: 20),
                   ),
                 ),
@@ -388,7 +390,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       children: [
                         _buildSidebarItem(
                           icon: Icons.home_outlined,
-                          label: 'Home',
+                          label: 'Utama',
                           index: 0,
                           isExtended: _isSidebarExtended,
                         ),
@@ -400,19 +402,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         ),
                         _buildSidebarItem(
                           icon: Icons.shopping_cart_outlined,
-                          label: 'Order',
+                          label: 'Pesanan',
                           index: 2,
                           isExtended: _isSidebarExtended,
                         ),
                         _buildSidebarItem(
                           icon: Icons.bar_chart_outlined,
-                          label: 'Statistic',
+                          label: 'Statistik',
                           index: 3,
                           isExtended: _isSidebarExtended,
                         ),
                         _buildSidebarItem(
                           icon: Icons.settings_outlined,
-                          label: 'Settings',
+                          label: 'Tetapan',
                           index: 4,
                           isExtended: _isSidebarExtended,
                         ),
@@ -487,7 +489,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               color: AppTheme.secondaryRed,
                             ),
                             label: Text(
-                              'Logout',
+                              'Log Keluar',
                               style: GoogleFonts.poppins(
                                 color: AppTheme.secondaryRed,
                                 fontWeight: FontWeight.w500,
@@ -525,7 +527,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             Icons.logout,
                             color: AppTheme.secondaryRed,
                           ),
-                          tooltip: 'Logout',
+                          tooltip: 'Log Keluar',
                         ),
                       ],
                     ],

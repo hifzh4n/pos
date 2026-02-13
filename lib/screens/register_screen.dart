@@ -52,19 +52,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
           MaterialPageRoute(builder: (_) => const LoginScreen()),
         );
       }
-    } on AuthException catch (error) {
+    } on AuthException catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(error.message),
+          content: const Text('Pendaftaran gagal. Sila cuba lagi.'),
           backgroundColor: AppTheme.secondaryRed,
         ),
       );
-    } catch (error) {
+    } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Ralat: $error'),
+          content: const Text('Ralat tidak dijangka. Sila cuba lagi.'),
           backgroundColor: AppTheme.secondaryRed,
         ),
       );
@@ -98,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
                   // Title
                   Text(
-                    'Create Account',
+                    'Cipta Akaun',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                       fontSize: 28,
@@ -108,7 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    'Join us to start managing your point of sale.',
+                    'Sertai kami untuk mula mengurus sistem jualan anda.',
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                       fontSize: 14,
@@ -122,7 +122,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: _nameController,
                     keyboardType: TextInputType.name,
                     decoration: InputDecoration(
-                      labelText: 'Full Name',
+                      labelText: 'Nama Penuh',
                       prefixIcon: Icon(
                         Icons.person_outline,
                         color: Colors.grey[600],
@@ -133,7 +133,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty)
-                        return 'Please enter your full name';
+                        return 'Sila masukkan nama penuh anda';
                       return null;
                     },
                   ),
@@ -144,7 +144,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      labelText: 'Email Address',
+                      labelText: 'Alamat Emel',
                       prefixIcon: Icon(
                         Icons.email_outlined,
                         color: Colors.grey[600],
@@ -155,8 +155,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty)
-                        return 'Please enter your email';
-                      if (!value.contains('@')) return 'Enter a valid email';
+                        return 'Sila masukkan emel anda';
+                      if (!value.contains('@')) return 'Masukkan emel yang sah';
                       return null;
                     },
                   ),
@@ -167,7 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     controller: _passwordController,
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
-                      labelText: 'Password',
+                      labelText: 'Kata Laluan',
                       prefixIcon: Icon(
                         Icons.lock_outline,
                         color: Colors.grey[600],
@@ -191,7 +191,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     validator: (value) {
                       if (value == null || value.length < 6)
-                        return 'Password must be at least 6 characters';
+                        return 'Kata laluan mesti sekurang-kurangnya 6 aksara';
                       return null;
                     },
                   ),
@@ -217,7 +217,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.white,
                             ),
                           )
-                        : const Text('Sign Up'),
+                        : const Text('Daftar'),
                   ),
                   const SizedBox(height: 24),
 
@@ -226,7 +226,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Already have an account? ",
+                        'Sudah ada akaun? ',
                         style: GoogleFonts.poppins(color: Colors.grey[600]),
                       ),
                       GestureDetector(
@@ -239,7 +239,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           );
                         },
                         child: Text(
-                          'Login',
+                          'Log Masuk',
                           style: GoogleFonts.poppins(
                             fontWeight: FontWeight.bold,
                             color: AppTheme.primaryYellow,

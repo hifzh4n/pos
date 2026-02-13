@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'POS System',
+      title: 'Sistem POS',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       home: Supabase.instance.client.auth.currentSession != null

@@ -39,19 +39,21 @@ class _LoginScreenState extends State<LoginScreen> {
           MaterialPageRoute(builder: (_) => const DashboardScreen()),
         );
       }
-    } on AuthException catch (error) {
+    } on AuthException catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(error.message),
+          content: const Text(
+            'Log masuk gagal. Sila semak emel dan kata laluan.',
+          ),
           backgroundColor: AppTheme.secondaryRed,
         ),
       );
-    } catch (error) {
+    } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Ralat: $error'),
+          content: const Text('Ralat tidak dijangka. Sila cuba lagi.'),
           backgroundColor: AppTheme.secondaryRed,
         ),
       );
@@ -85,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          'Welcome Back!',
+                          'Selamat kembali!',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
                             fontSize: 28,
@@ -95,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Sign in to access your dashboard.',
+                          'Log masuk untuk akses papan pemuka anda.',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
                             fontSize: 16,
@@ -108,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
-                            labelText: 'Email Address',
+                            labelText: 'Alamat Emel',
                             prefixIcon: Icon(
                               Icons.email_outlined,
                               color: Colors.grey[600],
@@ -116,9 +118,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty)
-                              return 'Please enter your email';
+                              return 'Sila masukkan emel anda';
                             if (!value.contains('@'))
-                              return 'Enter a valid email';
+                              return 'Masukkan emel yang sah';
                             return null;
                           },
                         ),
@@ -128,7 +130,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: _passwordController,
                           obscureText: _obscurePassword,
                           decoration: InputDecoration(
-                            labelText: 'Password',
+                            labelText: 'Kata Laluan',
                             prefixIcon: Icon(
                               Icons.lock_outline,
                               color: Colors.grey[600],
@@ -149,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty)
-                              return 'Please enter your password';
+                              return 'Sila masukkan kata laluan';
                             return null;
                           },
                         ),
@@ -161,7 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () {
                               // TODO: Implement Forgot Password logic if needed
                             },
-                            child: const Text('Forgot Password?'),
+                            child: const Text('Lupa kata laluan?'),
                           ),
                         ),
                         const SizedBox(height: 24),
@@ -176,7 +178,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     color: Colors.black,
                                   ),
                                 )
-                              : const Text('Login'),
+                              : const Text('Log Masuk'),
                         ),
                         const SizedBox(height: 24),
 
@@ -188,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 horizontal: 16,
                               ),
                               child: Text(
-                                'OR',
+                                'ATAU',
                                 style: GoogleFonts.poppins(
                                   color: Colors.grey[500],
                                 ),
@@ -203,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Don't have an account? ",
+                              'Belum ada akaun? ',
                               style: GoogleFonts.poppins(
                                 color: Colors.grey[600],
                               ),
@@ -218,7 +220,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 );
                               },
                               child: Text(
-                                'Sign Up',
+                                'Daftar',
                                 style: GoogleFonts.poppins(
                                   fontWeight: FontWeight.bold,
                                   color: AppTheme.secondaryRed,

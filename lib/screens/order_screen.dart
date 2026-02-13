@@ -28,7 +28,7 @@ class OrderScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Current Order',
+              'Pesanan Semasa',
               style: GoogleFonts.poppins(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
@@ -37,7 +37,7 @@ class OrderScreen extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             Text(
-              'Verify items before checkout',
+              'Semak item sebelum pembayaran',
               style: GoogleFonts.poppins(fontSize: 14, color: Colors.grey[600]),
             ),
             const SizedBox(height: 24),
@@ -54,7 +54,7 @@ class OrderScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 16),
                           Text(
-                            'No items in order yet',
+                            'Tiada item dalam pesanan lagi',
                             style: GoogleFonts.poppins(
                               fontSize: 16,
                               color: Colors.grey[500],
@@ -158,7 +158,7 @@ class OrderScreen extends StatelessWidget {
                                                     ),
                                                     const SizedBox(width: 8),
                                                     Text(
-                                                      'Order #$orderNum',
+                                                      'Pesanan #$orderNum',
                                                       style:
                                                           GoogleFonts.poppins(
                                                             fontWeight:
@@ -283,7 +283,7 @@ class OrderScreen extends StatelessWidget {
                                                         ),
                                                       ),
                                                       child: Text(
-                                                        '+ Cheese',
+                                                        '+ Keju',
                                                         style:
                                                             GoogleFonts.poppins(
                                                               fontSize: 12,
@@ -302,7 +302,7 @@ class OrderScreen extends StatelessWidget {
                                               Row(
                                                 children: [
                                                   Text(
-                                                    'Qty: ${item['quantity']}',
+                                                    'Kuantiti: ${item['quantity']}',
                                                     style: GoogleFonts.poppins(
                                                       fontWeight:
                                                           FontWeight.w600,
@@ -316,7 +316,7 @@ class OrderScreen extends StatelessWidget {
                                                     const SizedBox(width: 12),
                                                     Expanded(
                                                       child: Text(
-                                                        'note: "${item['remarks']}"',
+                                                        'catatan: "${item['remarks']}"',
                                                         style:
                                                             GoogleFonts.poppins(
                                                               fontSize: 12,
@@ -398,7 +398,7 @@ class OrderScreen extends StatelessWidget {
                                                       ),
                                                       const SizedBox(width: 8),
                                                       Text(
-                                                        'Cancel',
+                                                        'Batal',
                                                         style:
                                                             GoogleFonts.poppins(
                                                               color: Colors
@@ -462,7 +462,7 @@ class OrderScreen extends StatelessWidget {
                                                       ),
                                                       const SizedBox(width: 8),
                                                       Text(
-                                                        'Done',
+                                                        'Selesai',
                                                         style:
                                                             GoogleFonts.poppins(
                                                               color:
@@ -521,7 +521,7 @@ class OrderScreen extends StatelessWidget {
         builder: (context, setDialogState) {
           return AlertDialog(
             title: Text(
-              'Edit ${item['name']}',
+              'Sunting ${item['name']}',
               style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
             ),
             content: Column(
