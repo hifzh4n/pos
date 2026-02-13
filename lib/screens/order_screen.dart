@@ -196,13 +196,33 @@ class OrderScreen extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
-                                              Text(
-                                                'RM${(item['totalPrice'] as double).toStringAsFixed(2)}',
-                                                style: GoogleFonts.poppins(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 18,
-                                                  color: AppTheme.primaryYellow,
-                                                ),
+                                              Builder(
+                                                builder: (context) {
+                                                  final double price =
+                                                      double.tryParse(
+                                                        item['price']
+                                                            .toString(),
+                                                      ) ??
+                                                      0.0;
+                                                  final int quantity =
+                                                      int.tryParse(
+                                                        item['quantity']
+                                                            .toString(),
+                                                      ) ??
+                                                      1;
+                                                  final double totalPrice =
+                                                      price * quantity;
+                                                  return Text(
+                                                    'RM${totalPrice.toStringAsFixed(2)}',
+                                                    style: GoogleFonts.poppins(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      fontSize: 18,
+                                                      color: AppTheme
+                                                          .primaryYellow,
+                                                    ),
+                                                  );
+                                                },
                                               ),
                                             ],
                                           ),
@@ -235,7 +255,7 @@ class OrderScreen extends StatelessWidget {
                                                           ),
                                                     ),
                                                     child: Text(
-                                                      item['varian'],
+                                                      item['variant'] ?? '',
                                                       style:
                                                           GoogleFonts.poppins(
                                                             fontSize: 12,
@@ -289,14 +309,14 @@ class OrderScreen extends StatelessWidget {
                                                       fontSize: 14,
                                                     ),
                                                   ),
-                                                  if (item['remark'] != null &&
-                                                      item['remark']
+                                                  if (item['remarks'] != null &&
+                                                      item['remarks']
                                                           .toString()
                                                           .isNotEmpty) ...[
                                                     const SizedBox(width: 12),
                                                     Expanded(
                                                       child: Text(
-                                                        'note: "${item['remark']}"',
+                                                        'note: "${item['remarks']}"',
                                                         style:
                                                             GoogleFonts.poppins(
                                                               fontSize: 12,
@@ -335,7 +355,7 @@ class OrderScreen extends StatelessWidget {
                                                   ).showSnackBar(
                                                     SnackBar(
                                                       content: Text(
-                                                        '${item['name']} Cancelled',
+                                                        '${item['name']} Dibatalkan',
                                                       ),
                                                       backgroundColor:
                                                           Colors.red,
@@ -510,7 +530,7 @@ class OrderScreen extends StatelessWidget {
                 // Quantity
                 Row(
                   children: [
-                    Text('Quantity:', style: GoogleFonts.poppins()),
+                    Text('Kuantiti:', style: GoogleFonts.poppins()),
                     const Spacer(),
                     IconButton(
                       icon: const Icon(Icons.remove_circle_outline),
@@ -540,7 +560,7 @@ class OrderScreen extends StatelessWidget {
                 TextField(
                   controller: remarksController,
                   decoration: InputDecoration(
-                    labelText: 'Remarks / Variant',
+                    labelText: 'Catatan / Varian',
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -551,7 +571,7 @@ class OrderScreen extends StatelessWidget {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Cancel'),
+                child: const Text('Batal'),
               ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -567,7 +587,7 @@ class OrderScreen extends StatelessWidget {
                   onUpdateItem(index, updatedItem);
                   Navigator.pop(context);
                 },
-                child: const Text('Save'),
+                child: const Text('Simpan'),
               ),
             ],
           );

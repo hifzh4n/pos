@@ -182,7 +182,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
                       // Add-on Section (Always shown for all items)
                       Text(
-                        'Add-on',
+                        'Tambahan',
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w600,
                           fontSize: 14,

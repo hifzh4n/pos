@@ -100,9 +100,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         await _supabase.from('order_items').insert(itemsPayload);
       } catch (e) {
         if (mounted) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text('Error saving order: $e')));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Ralat menyimpan pesanan: $e')),
+          );
         }
       }
     }
@@ -121,14 +121,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _cartItems.add(itemWithOrder);
     });
 
-    // Optional: Show snackbar feedback or move to order screen
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('${item['name']} added to order'),
-        backgroundColor: Colors.green,
-        duration: const Duration(seconds: 1),
-      ),
-    );
+    // Snackbar handled in MenuScreen
   }
 
   void _removeFromCart(int index) {
@@ -156,7 +149,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('Order completed!'),
+        content: Text('Pesanan selesai!'),
         duration: Duration(milliseconds: 500),
       ),
     );
@@ -166,16 +159,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final shouldLogout = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Logout'),
-        content: const Text('Are you sure you want to logout?'),
+        title: const Text('Log Keluar'),
+        content: const Text('Adakah anda pasti mahu log keluar?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: const Text('Batal'),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Logout', style: TextStyle(color: Colors.red)),
+            child: const Text(
+              'Log Keluar',
+              style: TextStyle(color: Colors.red),
+            ),
           ),
         ],
       ),

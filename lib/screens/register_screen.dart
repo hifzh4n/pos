@@ -46,9 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         // Fallback if something unexpected happens, though with confirmation disabled, session should exist.
         if (!mounted) return;
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Registration successful. Please login.'),
-          ),
+          const SnackBar(content: Text('Pendaftaran berjaya. Sila log masuk.')),
         );
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (_) => const LoginScreen()),
@@ -66,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Error: $error'),
+          content: Text('Ralat: $error'),
           backgroundColor: AppTheme.secondaryRed,
         ),
       );
